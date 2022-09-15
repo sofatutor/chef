@@ -96,7 +96,9 @@ function Invoke-Build {
         Write-BuildLine " ** Running the chef project's 'rake install' to install the path-based gems so they look like any other installed gem."
         bundle exec rake install:local # this needs to be 'bundle exec'd because a Rakefile makes reference to Bundler
         if (-not $?) {
+          gem
             ruby -v
+            gem uninstall --silent chef-utils --force -v '17.10.0'
             gem install pkg/chef-17.10.19-universal-mingw32.gem
             Write-Warning " -- That didn't work. Let's try again."
             bundle exec rake install:local # this needs to be 'bundle exec'd because a Rakefile makes reference to Bundler
