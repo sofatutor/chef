@@ -44,6 +44,9 @@ module ChefUtils
       # @return [Boolean]
       #
       def aix?(node = __getnode)
+        puts "<<<<<<<<<<<<"
+        puts node["platform_family"]
+        puts ">>>>>>>>>>>>"
         node["platform_family"] == "aix"
       end
 
