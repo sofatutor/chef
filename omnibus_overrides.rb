@@ -22,6 +22,7 @@ override "openssl", version: mac_os_x? ? "1.1.1m" : "1.0.2zb"
 override "pkg-config-lite", version: "0.28-1"
 
 puts "<<<<< check_aix"
+p ChefUtils::Internal.send(:__getnode)
 override :ruby, version: aix? ? "3.0.3" : "3.1.2"
 puts ">>>>> check_aix"
 override "ruby-windows-devkit-bash", version: "3.1.23-4-msys-1.0.18"
