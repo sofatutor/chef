@@ -50,6 +50,8 @@ function Invoke-Download() {
         Write-BuildLine "git_path = $git_path"
         Write-BuildLine "pkg_filename = $pkg_filename"
         Write-BuildLine "PLAN_CONTEXT = $PLAN_CONTEXT"
+        $file_exists=Test-Path $HAB_CACHE_SRC_PATH/$pkg_filename
+        Write-BuildLine "pkg file exists = $file_exists"
         Push-Location (Resolve-Path "$PLAN_CONTEXT/../").Path
         Write-BuildLine " __ hab cache src path before git "
         Write-BuildLine "HAB_CACHE_SRC_PATH = $HAB_CACHE_SRC_PATH"
