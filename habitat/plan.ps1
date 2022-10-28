@@ -43,7 +43,9 @@ function Invoke-Download() {
     # appropriate path within the repo and place the generated tarball in the
     # location expected by do_unpack
     Write-BuildLine "before git_path"
-    $git_path += "c:\\Program Files\\Git\\bin"
+    $git_path += "C:\\Program Files\\Git\\bin"
+    $git_version=git --version
+    Write-BuildLine "git_version $git_version"
     Write-BuildLine "git_path = $git_path"
     Write-BuildLine "after git_path"
     try {
@@ -56,7 +58,7 @@ function Invoke-Download() {
         Write-BuildLine " __ hab cache src path before git "
         Write-BuildLine "HAB_CACHE_SRC_PATH = $HAB_CACHE_SRC_PATH"
         $files=Get-ChildItem $HAB_CACHE_SRC_PATH
-        Write-BuildLine $files
+        Write-BuildLine "Package files $files"
         $git_version=git --version
         Write-BuildLine "git_version $git_version"
         $git_version_2=&"$git_path\git" --version
@@ -66,7 +68,7 @@ function Invoke-Download() {
 
         Write-BuildLine " __ hab cache src path after start-process "
         $files=Get-ChildItem $HAB_CACHE_SRC_PATH
-        Write-BuildLine $files
+        Write-BuildLine "Package files $files"
         Start-Sleep -Seconds 30
         Write-BuildLine " __ hab cache src path after start-process + 30 seconds"
         $files=Get-ChildItem $HAB_CACHE_SRC_PATH
