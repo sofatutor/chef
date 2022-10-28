@@ -44,6 +44,9 @@ function Invoke-Download() {
     # location expected by do_unpack
       Write-Host "--- :construction: Verifying Git is Installed"
 
+    choco install git -y
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+}
       try {
         $source = Get-Command -Name Git -Verbose -ErrorAction Stop
 
