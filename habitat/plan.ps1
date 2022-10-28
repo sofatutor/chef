@@ -44,11 +44,15 @@ function Invoke-Download() {
     # location expected by do_unpack
     Write-BuildLine "before git_path"
     $git_path += "c:\\Program Files\\Git\\bin"
+    Write-BuildLine "git_path = $git_path"
     Write-BuildLine "after git_path"
     try {
+        Write-BuildLine "git_path = $git_path"
+        Write-BuildLine "pkg_filename = $pkg_filename"
         Write-BuildLine "PLAN_CONTEXT = $PLAN_CONTEXT"
         Push-Location (Resolve-Path "$PLAN_CONTEXT/../").Path
         Write-BuildLine " __ hab cache src path before git "
+        Write-BuildLine "HAB_CACHE_SRC_PATH = $HAB_CACHE_SRC_PATH"
         Get-ChildItem $HAB_CACHE_SRC_PATH
         [System.Diagnostics.Process]::Start("$git_path\\git", "archive --format=zip --output=${HAB_CACHE_SRC_PATH}\\${pkg_filename} HEAD")
         # Start-Process -FilePath "$git_path\\git" -Wait -ArgumentList "archive","--format=zip","--output=$HAB_CACHE_SRC_PATH\\$pkg_filename","HEAD"
