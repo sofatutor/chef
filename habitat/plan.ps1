@@ -45,10 +45,16 @@ function Invoke-Download() {
     $git_path += "c:\\Program Files\\Git\\bin"
     try {
         Push-Location (Resolve-Path "$PLAN_CONTEXT/../").Path
-        # [System.Diagnostics.Process]::Start("$git_path\\git", "archive --format=zip --output=${HAB_CACHE_SRC_PATH}\\${pkg_filename} HEAD")
-        Start-Process -FilePath "$git_path\\git" -Wait -ArgumentList "archive","--format=zip","--output=$HAB_CACHE_SRC_PATH\\$pkg_filename","HEAD"
+        Write-BuildLine " __ hab cache src path before git "
+        Get-ChildItem $HAB_CACHE_SRC_PATH
+        [System.Diagnostics.Process]::Start("$git_path\\git", "archive --format=zip --output=${HAB_CACHE_SRC_PATH}\\${pkg_filename} HEAD")
+        # Start-Process -FilePath "$git_path\\git" -Wait -ArgumentList "archive","--format=zip","--output=$HAB_CACHE_SRC_PATH\\$pkg_filename","HEAD"
 
+        Write-BuildLine " __ hab cache src path after start-process "
+        Get-ChildItem $HAB_CACHE_SRC_PATH
         Start-Sleep -Seconds 30
+        Write-BuildLine " __ hab cache src path after start-process + 30 seconds"
+        Get-ChildItem $HAB_CACHE_SRC_PATH
         # getting an error about the archive being in use, adding the sleep to let other handles on the file finish.
         if (-not $?) { throw "unable to create archive of source" }
     } finally {
