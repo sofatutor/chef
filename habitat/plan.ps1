@@ -46,6 +46,7 @@ function Invoke-Download() {
     $git_path += "c:\\Program Files\\Git\\bin"
     Write-BuildLine "after git_path"
     try {
+        Write-BuildLine "PLAN_CONTEXT = $PLAN_CONTEXT"
         Push-Location (Resolve-Path "$PLAN_CONTEXT/../").Path
         Write-BuildLine " __ hab cache src path before git "
         Get-ChildItem $HAB_CACHE_SRC_PATH
