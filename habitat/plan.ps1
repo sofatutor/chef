@@ -44,7 +44,7 @@ function Invoke-Download() {
     # location expected by do_unpack
     Write-BuildLine "before git_path"
     $git_path += "C:\\Program Files\\Git\\bin"
-    $git_exists = Test-File "$git_path\\git.exe"
+    $git_exists = Test-Path "$git_path\\git.exe"
     Write-BuildLine "git exists $git_exists"
 
     $git_paths=gci c:\ -include "git.exe" -recurse
