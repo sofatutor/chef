@@ -14,6 +14,7 @@ $pkg_deps=@(
   "core/cacerts"
   "chef/ruby31-plus-devkit"
   "chef/chef-powershell-shim"
+  "core/git"
 )
 
 function Invoke-Begin {
