@@ -46,6 +46,15 @@ function Invoke-Download() {
       Write-Host "--- :construction: current user: $current_user"
 
       $files = Get-ChildItem C:\ProgramData
+      Write-Host "C:\ProgramData"
+      Write-Host $files
+
+      $files = Get-ChildItem &'C:\Program Files'
+      Write-Host "C:\Program Files"
+      Write-Host $files
+
+      $files = Get-ChildItem &'C:\Program Files (x86)'
+      Write-Host "C:\Program Files (x86)"
       Write-Host $files
 
       Write-Host "--- :construction: Verifying Git is Installed"
