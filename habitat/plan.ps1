@@ -42,18 +42,6 @@ function Invoke-Download() {
     # source is in this repo, so we're going to create an archive from the
     # appropriate path within the repo and place the generated tarball in the
     # location expected by do_unpack
-    Write-BuildLine "before git_path"
-    $git_path += "C:\\Program Files\\Git\\bin"
-    $git_exists = Test-Path "$git_path\\git.exe"
-    Write-BuildLine "git exists $git_exists"
-
-    $git_paths=gci c:\ -include "git.exe" -recurse
-    echo $git_paths
-
-    Write-BuildLine "git_path = $git_path"
-    Write-BuildLine "after git_path"
-
-
       Write-Host "--- :construction: Verifying Git is Installed"
 
       try {
@@ -65,10 +53,8 @@ function Invoke-Download() {
           # gotta refresh the path so you can actually use Git now
           $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
       }
+
       try {
-        Write-BuildLine "git_path = $git_path"
-        Write-BuildLine "pkg_filename = $pkg_filename"
-        Write-BuildLine "PLAN_CONTEXT = $PLAN_CONTEXT"
         $file_exists=Test-Path $HAB_CACHE_SRC_PATH/$pkg_filename
         Write-BuildLine "pkg file exists = $file_exists"
         Push-Location (Resolve-Path "$PLAN_CONTEXT/../").Path
