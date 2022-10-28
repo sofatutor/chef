@@ -44,21 +44,26 @@ function Invoke-Download() {
     # location expected by do_unpack
       Write-Host "--- :construction: Verifying Git is Installed"
 
+      $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
       try {
-        $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
         $source = Get-Command -Name Choco -Verbose -ErrorAction Stop
         Write-Host "Choco version " $source.version
+      } catch {
+        Write-Host "Couldn't find choco!!"
+      }
+      try {
         $source = Get-Command -Name Git -Verbose -ErrorAction Stop
 
         Write-Host "Which version of Git is installed? - " $source.version
       } catch {
-          try {
+        Write-Host "Couldn't find git!!"
+        try {
           choco install git -y
           # gotta refresh the path so you can actually use Git now
           $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
-          } catch {
-            Write-Host "choco seems to have errored?!"
-          }
+        } catch {
+          Write-Host "choco seems to have errored?!"
+        }
       }
 
       try {
