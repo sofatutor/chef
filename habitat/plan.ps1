@@ -57,8 +57,8 @@ function Invoke-Download() {
         Write-BuildLine "HAB_CACHE_SRC_PATH = $HAB_CACHE_SRC_PATH"
         $files=Get-ChildItem $HAB_CACHE_SRC_PATH
         Write-BuildLine $files
-        [System.Diagnostics.Process]::Start("$git_path\\git", "archive --format=zip --output=${HAB_CACHE_SRC_PATH}\\${pkg_filename} HEAD")
-        # Start-Process -FilePath "$git_path\\git" -Wait -ArgumentList "archive","--format=zip","--output=$HAB_CACHE_SRC_PATH\\$pkg_filename","HEAD"
+        # [System.Diagnostics.Process]::Start("$git_path\\git", "archive --format=zip --output=${HAB_CACHE_SRC_PATH}\\${pkg_filename} HEAD")
+        Start-Process -FilePath "$git_path\\git" -Wait -ArgumentList "archive","--format=zip","--output=$HAB_CACHE_SRC_PATH\\$pkg_filename","HEAD"
 
         Write-BuildLine " __ hab cache src path after start-process "
         $files=Get-ChildItem $HAB_CACHE_SRC_PATH
