@@ -47,12 +47,15 @@ function Invoke-Download() {
     $git_exists = Test-File "$git_path\\git.exe"
     Write-BuildLine "git exists $git_exists"
 
-    Write-BuildLine "git_version $git_version"
+    $git_paths=gci c:\ -include "git.exe" -recurse
+    echo $git_paths
+
     Write-BuildLine "git_path = $git_path"
     Write-BuildLine "after git_path"
 
 
       Write-Host "--- :construction: Verifying Git is Installed"
+
       try {
         $source = Get-Command -Name Git -Verbose
 
