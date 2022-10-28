@@ -57,7 +57,7 @@ function Invoke-Download() {
       Write-Host "--- :construction: Verifying Git is Installed"
 
       try {
-        $source = Get-Command -Name Git -Verbose
+        $source = Get-Command -Name Git -Verbose -ErrorAction Stop
 
         Write-Host "Which version of Git is installed? - " $source.version
       } catch {
