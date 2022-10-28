@@ -44,11 +44,23 @@ function Invoke-Download() {
     # location expected by do_unpack
     Write-BuildLine "before git_path"
     $git_path += "C:\\Program Files\\Git\\bin"
-    $git_version=git --version
+    $git_exists = Test-File "$git_path\\git.exe"
+    Write-BuildLine "git exists $git_exists"
+
     Write-BuildLine "git_version $git_version"
     Write-BuildLine "git_path = $git_path"
     Write-BuildLine "after git_path"
-    try {
+
+
+      Write-Host "--- :construction: Verifying Git is Installed"
+      $source = Get-Command -Name Git -Verbose
+      Write-Host "Which version of Git is installed? - " $source.version
+      if (-not ($source.name -match "git.exe")) {
+          choco install git -y
+          # gotta refresh the path so you can actually use Git now
+          $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+      }
+      try {
         Write-BuildLine "git_path = $git_path"
         Write-BuildLine "pkg_filename = $pkg_filename"
         Write-BuildLine "PLAN_CONTEXT = $PLAN_CONTEXT"
