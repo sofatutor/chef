@@ -42,7 +42,9 @@ function Invoke-Download() {
     # source is in this repo, so we're going to create an archive from the
     # appropriate path within the repo and place the generated tarball in the
     # location expected by do_unpack
+    Write-BuildLine "before git_path"
     $git_path += "c:\\Program Files\\Git\\bin"
+    Write-BuildLine "after git_path"
     try {
         Push-Location (Resolve-Path "$PLAN_CONTEXT/../").Path
         Write-BuildLine " __ hab cache src path before git "
