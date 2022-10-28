@@ -57,6 +57,11 @@ function Invoke-Download() {
       Write-Host "C:\Program Files (x86)"
       Write-Host $files
 
+      $files = Get-ChildItem &'C:\hab\pkgs'
+      Write-Host "C:\hab\pkgs'
+      Write-Host $files
+
+
       Write-Host "--- :construction: Verifying Git is Installed"
 
       $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
