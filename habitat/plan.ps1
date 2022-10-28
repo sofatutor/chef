@@ -45,6 +45,9 @@ function Invoke-Download() {
       $current_user = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
       Write-Host "--- :construction: current user: $current_user"
 
+      $files = Get-ChildItem C:\ProgramData
+      Write-Host $files
+
       Write-Host "--- :construction: Verifying Git is Installed"
 
       $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
