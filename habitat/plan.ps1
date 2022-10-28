@@ -42,6 +42,9 @@ function Invoke-Download() {
     # source is in this repo, so we're going to create an archive from the
     # appropriate path within the repo and place the generated tarball in the
     # location expected by do_unpack
+      $current_user = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+      Write-Host "--- :construction: current user: $current_user"
+
       Write-Host "--- :construction: Verifying Git is Installed"
 
       $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
