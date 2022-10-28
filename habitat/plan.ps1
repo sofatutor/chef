@@ -58,7 +58,7 @@ function Invoke-Download() {
       Write-Host $files
 
       $files = Get-ChildItem &'C:\hab\pkgs'
-      Write-Host "C:\hab\pkgs'
+      Write-Host "C:\hab\pkgs"
       Write-Host $files
 
 
