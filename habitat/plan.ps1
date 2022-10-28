@@ -49,18 +49,20 @@ function Invoke-Download() {
       Write-Host "C:\ProgramData"
       Write-Host $files
 
-      $files = Get-ChildItem &'C:\Program Files'
+      $files = Get-ChildItem "C:\Program Files"
       Write-Host "C:\Program Files"
       Write-Host $files
 
-      $files = Get-ChildItem &'C:\Program Files (x86)'
+      $files = Get-ChildItem "C:\Program Files (x86)"
       Write-Host "C:\Program Files (x86)"
       Write-Host $files
 
-      $files = Get-ChildItem &'C:\hab\pkgs'
-      Write-Host "C:\hab\pkgs"
+      $files = Get-ChildItem "C:\Users"
+      Write-Host "C:\Users"
       Write-Host $files
 
+      $host_name = [System.Net.Dns]::GetHostName()
+      Write-Host $host_name
 
       Write-Host "--- :construction: Verifying Git is Installed"
 
