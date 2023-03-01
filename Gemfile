@@ -81,6 +81,9 @@ eval_gemfile("./Gemfile.local") if File.exist?("./Gemfile.local")
 # We copy (and overwrite) these files every time "bundle <exec|install>" is
 # executed, just in case they have changed.
 if RUBY_PLATFORM.match?(/mswin|mingw|windows/)
+  unless ENV['CUSTOM_CHEF_POWERSHELL_BRANCH'].empty?
+    gem "chef-powershell", git: "https://github.com/chef/chef-powershell-shim.git", branch: ENV['CUSTOM_CHEF_POWERSHELL_BRANCH'], glob: "chef-powershell/*.gemspec"
+  end
   instance_eval do
     ruby_exe_dir = RbConfig::CONFIG["bindir"]
     assemblies = Dir.glob(File.expand_path("distro/ruby_bin_folder/#{ENV["PROCESSOR_ARCHITECTURE"]}", __dir__) + "**/*")
