@@ -112,12 +112,13 @@ $Env:FORCE_FFI_YAJL = "ext"
 # accept license
 $Env:CHEF_LICENSE = "accept-no-persist"
 
+bundle -V
+If ($lastexitcode -ne 0) { Throw $lastexitcode }
+
 # some tests need winrm configured
 winrm quickconfig -quiet
 If ($lastexitcode -ne 0) { Throw $lastexitcode }
 
-bundle -V
-If ($lastexitcode -ne 0) { Throw $lastexitcode }
 
 # buildkite changes the casing of the Path variable to PATH
 # It is not clear how or where that happens, but it breaks the choco
@@ -141,8 +142,6 @@ bundle exec rspec -f progress --profile -- ./spec/functional
 If ($lastexitcode -ne 0) { $exit = 1 }
 Write-Output "Last exit code: $lastexitcode"
 Write-Output ""
-
-git diff # what has changed
 
 bundle exec rspec -f progress --profile -- ./spec/integration
 If ($lastexitcode -ne 0) { $exit = 1 }
