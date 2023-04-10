@@ -142,6 +142,8 @@ If ($lastexitcode -ne 0) { $exit = 1 }
 Write-Output "Last exit code: $lastexitcode"
 Write-Output ""
 
+git diff # what has changed
+
 bundle exec rspec -f progress --profile -- ./spec/integration
 If ($lastexitcode -ne 0) { $exit = 1 }
 Write-Output "Last exit code: $lastexitcode"
