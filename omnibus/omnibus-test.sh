@@ -127,9 +127,9 @@ rhel_sudo="/opt/rh/devtoolset-7/root/usr/bin/sudo"
 sudo_args=""
 if [[ "$sudo_path" != "$rhel_sudo" ]]; then
   echo "HERE"
-  sudo -E bundle install --jobs=3 --retry=3
+  sudo -E bundle install -V --jobs=3 --retry=3
   sudo -E bundle exec rspec --profile -f progress
 else
-  sudo bundle install --jobs=3 --retry=3
+  sudo bundle install -V --jobs=3 --retry=3
   sudo bundle exec rspec --profile -f progress
 fi
