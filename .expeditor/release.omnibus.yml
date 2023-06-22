@@ -8,6 +8,9 @@ fips-platforms:
   - el-*-ppc64*
   - ubuntu-*-x86_64
   - windows-*
+  - el-*-aarch64
+  - amazon-2-aarch64
+  - sles-15-aarch64
 builder-to-testers-map:
   aix-7.1-powerpc:
     - aix-7.1-powerpc
