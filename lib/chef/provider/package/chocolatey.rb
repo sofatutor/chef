@@ -42,6 +42,8 @@ class Chef
         #
         # @return [Chef::Resource::ChocolateyPackage] the current_resource
         def load_current_resource
+          require "pry"
+          binding.pry
           @current_resource = Chef::Resource::ChocolateyPackage.new(new_resource.name)
           current_resource.package_name(new_resource.package_name)
           current_resource.version(build_current_versions)
@@ -225,7 +227,7 @@ class Chef
           package_name_array.each do |pkg|
             available_versions =
               begin
-                cmd = [ "list", "-r", pkg ]
+                cmd = [ "search", "-r", pkg ]
                 cmd += common_options
                 cmd.push( new_resource.list_options ) if new_resource.list_options
 
