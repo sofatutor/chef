@@ -6,6 +6,7 @@ name: kitchen
   push:
     branches:
       - main
+      - tp/why-kitchen-tests-broken
 
 jobs:
   windows:
@@ -113,6 +114,7 @@ jobs:
             Remove-Item -Path C:\opscode\chef\embedded\bin\ldiff
         }
 
+        Write-Output "bundle install --jobs=3 --retry=3"
         bundle install --jobs=3 --retry=3
         # If ($lastexitcode -ne 0) { Exit $lastexitcode }
         # The bundle install command above fails because our build on windows on ruby-3.0 is
@@ -121,10 +123,13 @@ jobs:
         # very bad hack.
 
         If ($lastexitcode -ne 0) { Exit $lastexitcode }
+        Write-Output "gem install berkshelf --no-doc"
         gem install berkshelf --no-doc
         If ($lastexitcode -ne 0) { Exit $lastexitcode }
+        Write-Output "berks vendor cookbooks"
         berks vendor cookbooks
         If ($lastexitcode -ne 0) { Exit $lastexitcode }
+        Write-Output "chef-client -z -o end_to_end --chef-license accept-no-persist"
         chef-client -z -o end_to_end --chef-license accept-no-persist
 
   macos:
