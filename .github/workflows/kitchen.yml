@@ -124,7 +124,7 @@ jobs:
 
         If ($lastexitcode -ne 0) { Exit $lastexitcode }
         Write-Output "gem install berkshelf --no-doc"
-        gem install berkshelf --no-doc
+        gem install berkshelf --no-doc -v '8.0.5'
         If ($lastexitcode -ne 0) { Exit $lastexitcode }
         Write-Output "berks vendor cookbooks"
         berks vendor cookbooks
