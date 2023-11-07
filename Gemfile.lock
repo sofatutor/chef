@@ -249,7 +249,7 @@ GEM
       bundler
       chef (>= 12.0, < 15)
       stove (~> 5.0)
-      thor
+      thor (=0.19)
     hashie (3.5.7)
     highline (1.7.10)
     hirb (0.7.3)
@@ -301,7 +301,7 @@ GEM
     mixlib-install (3.9.3)
       mixlib-shellout
       mixlib-versioning
-      thor
+      thor (=0.19)
     mixlib-log (1.7.1)
     mixlib-shellout (2.3.2)
     mixlib-shellout (2.3.2-universal-mingw32)
